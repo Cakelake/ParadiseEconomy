@@ -1,0 +1,86 @@
+ParadiseEconomy = ParadiseEconomy or {}
+
+
+NOTE: players can have multiple accounts
+panel 1 would be the player's account page view
+panel 2 admin only panel that lets admins open up all the accounts
+panel 3 server store editor, admins can modify items posted here and how much each item costs, 
+panel 4 the server store front, this is where players buy stuff, player should have the ability to pay using any of their accounts
+
+we have 3 global moddatas
+ParadiseEconomy.accounts holds all the accounts with the list of players who have access to that account, as well as the Jimoleon it has
+ParadiseEconomy.store this is the server store data holds the items listed by the admins as well as their prices
+ParadiseEconomy.trade --for future use, this should be the table where each player's tradable items for sale are listed and their prices, as well as which account the funds get transfer to for the items transaction
+we might need another panel for player storefront
+
+make client side functions relay to server only, things are all done from client side, except for the item spawning, i think that b42 needs both client and server to spawn the items
+
+
+--acts as resolver to return steam id if steam is active or use playerusername instead
+function ParadiseEconomy.getID(var)
+end
+
+
+ParadiseEconomy.isCanAffordJimoleon(id, amount)
+
+ParadiseEconomy.setJimoleon(id, amount)
+
+ParadiseEconomy.sendJimoleon(senderId, amount, recieverId)
+
+
+--need account panel
+--can be opened by players who owns the account
+--anyone from the account can remove/add other players
+function ParadiseEconomy.getAccountID(targ) 
+    targ = targ or ParadiseEconomy.getPlayer(var) 
+    if not targ then return end
+end
+
+ParadiseEconomy.getJimoleon(acc) -- use account as param
+
+function ParadiseEconomy.createAccountID(var) 
+    --returns string, take it from a textbox when player is creating the account
+end
+function ParadiseEconomy.addPlayerToAccountID(acc, targ) 
+
+end
+function ParadiseEconomy.delPlayerFromAccountID(acc, targ) 
+
+end
+function ParadiseEconomy.getAccountJimoleon(acc) 
+
+end
+function ParadiseEconomy.setAccountJimoleon(acc, fund) 
+
+end
+function ParadiseEconomy.getPlayerAccounts(var) 
+    --returns all the account that player owns as a table
+    --the panel should have the ability to allow player to view various account pages
+end
+
+
+--helper functions
+--just to resolve and get the actual player object
+function ParadiseEconomy.getPlayer(var) 
+    local targ = nil
+    if instanceof(var, "IsoPlayer") then 
+        targ = var
+    elseif type(var) == 'string' then
+        targ = getPlayerFromUsername(var)
+    end
+    return nil
+end
+
+--just to resolve and get the actual player object
+function ParadiseEconomy.getUsername(var) 
+    local user = nil
+ 
+    if instanceof(var, "IsoPlayer") then 
+        user = var:getUsername() 
+    elseif type(var) == 'string' then
+        return user
+    end
+    return user
+end
+
+
